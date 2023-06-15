@@ -88,7 +88,7 @@ public class Theater {
     public static void main(String[] args) {
         Theater theater = new Theater(LocalDateProvider.singleton());
         theater.printSchedule();
-        System.out.println("\n");
+        System.out.println(" ");
         theater.printScheduleJson();
     }
 }
