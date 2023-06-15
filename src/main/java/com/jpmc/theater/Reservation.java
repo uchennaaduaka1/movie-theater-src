@@ -14,4 +14,8 @@ public class Reservation {
     public double totalFee() {
         return showing.getMovieFee() * audienceCount;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }

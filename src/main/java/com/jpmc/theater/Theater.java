@@ -18,16 +18,15 @@ public class Theater {
         Movie turningRed = new Movie("Turning Red", Duration.ofMinutes(85), 11, 0);
         Movie theBatMan = new Movie("The Batman", Duration.ofMinutes(95), 9, 0);
         schedule = List.of(
-            new Showing(turningRed, 1, LocalDateTime.of(provider.currentDate(), LocalTime.of(9, 0))),
-            new Showing(spiderMan, 2, LocalDateTime.of(provider.currentDate(), LocalTime.of(11, 0))),
-            new Showing(theBatMan, 3, LocalDateTime.of(provider.currentDate(), LocalTime.of(12, 50))),
-            new Showing(turningRed, 4, LocalDateTime.of(provider.currentDate(), LocalTime.of(14, 30))),
-            new Showing(spiderMan, 5, LocalDateTime.of(provider.currentDate(), LocalTime.of(16, 10))),
-            new Showing(theBatMan, 6, LocalDateTime.of(provider.currentDate(), LocalTime.of(17, 50))),
-            new Showing(turningRed, 7, LocalDateTime.of(provider.currentDate(), LocalTime.of(19, 30))),
-            new Showing(spiderMan, 8, LocalDateTime.of(provider.currentDate(), LocalTime.of(21, 10))),
-            new Showing(theBatMan, 9, LocalDateTime.of(provider.currentDate(), LocalTime.of(23, 0)))
-        );
+                new Showing(turningRed, 1, LocalDateTime.of(provider.currentDate(), LocalTime.of(9, 0))),
+                new Showing(spiderMan, 2, LocalDateTime.of(provider.currentDate(), LocalTime.of(11, 0))),
+                new Showing(theBatMan, 3, LocalDateTime.of(provider.currentDate(), LocalTime.of(12, 50))),
+                new Showing(turningRed, 4, LocalDateTime.of(provider.currentDate(), LocalTime.of(14, 30))),
+                new Showing(spiderMan, 5, LocalDateTime.of(provider.currentDate(), LocalTime.of(16, 10))),
+                new Showing(theBatMan, 6, LocalDateTime.of(provider.currentDate(), LocalTime.of(17, 50))),
+                new Showing(turningRed, 7, LocalDateTime.of(provider.currentDate(), LocalTime.of(19, 30))),
+                new Showing(spiderMan, 8, LocalDateTime.of(provider.currentDate(), LocalTime.of(21, 10))),
+                new Showing(theBatMan, 9, LocalDateTime.of(provider.currentDate(), LocalTime.of(23, 0))));
     }
 
     public Reservation reserve(Customer customer, int sequence, int howManyTickets) {
@@ -42,33 +41,54 @@ public class Theater {
     }
 
     public void printSchedule() {
-        System.out.println(provider.currentDate());
+        System.out.println("SIMPLE TEXT FORMAT MOVIE SCHEDULE FOR " + provider.currentDate());
         System.out.println("===================================================");
-        schedule.forEach(s ->
-                System.out.println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle() + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee())
-        );
+        schedule.forEach(s -> System.out
+                .println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle() + " "
+                        + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee()));
         System.out.println("===================================================");
     }
 
-    public String humanReadableFormat(Duration duration) {
+    public void printScheduleJson() {
+        System.out.println("JSON FORMAT MOVIE SCHEDULE FOR " + provider.currentDate());
+        schedule.forEach(s -> {
+            System.out.println(toJsonFormat(s));
+        });
+        System.out.println("===================================================");
+    }
+
+    private String humanReadableFormat(Duration duration) {
         long hour = duration.toHours();
         long remainingMin = duration.toMinutes() - TimeUnit.HOURS.toMinutes(duration.toHours());
 
-        return String.format("(%s hour%s %s minute%s)", hour, handlePlural(hour), remainingMin, handlePlural(remainingMin));
+        return String.format("(%s hour%s %s minute%s)", hour, handlePlural(hour), remainingMin,
+                handlePlural(remainingMin));
     }
 
     // (s) postfix should be added to handle plural correctly
     private String handlePlural(long value) {
         if (value == 1) {
             return "";
-        }
-        else {
+        } else {
             return "s";
         }
+    }
+
+    private String toJsonFormat(Showing s) {
+        String json = "{" +
+                "Sequence of the Day : " + s.getSequenceOfTheDay() + ", " +
+                "Start Time : " + s.getStartTime() + ", " +
+                "Title : " + s.getMovie().getTitle() + ", " +
+                "Running Time : " + humanReadableFormat(s.getMovie().getRunningTime()) + ", " +
+                "Fee : " + s.getMovieFee() +
+                "}";
+        return json;
     }
 
     public static void main(String[] args) {
         Theater theater = new Theater(LocalDateProvider.singleton());
         theater.printSchedule();
+        System.out.println("\n");
+        theater.printScheduleJson();
     }
 }
