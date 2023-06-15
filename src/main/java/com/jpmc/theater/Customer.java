@@ -10,19 +10,29 @@ public class Customer {
 
     /**
      * @param name customer name
-     * @param id customer id
+     * @param id   customer id
      */
     public Customer(String name, String id) {
         this.id = id; // NOTE - id is not used anywhere at the moment
 
         this.name = name;
 
-        }
+    }
+
+    public String getCustomerId() {
+        return id;
+    }
+
+    public String getCustomerName() {
+        return name;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Customer))
+            return false;
         Customer customer = (Customer) o;
         return Objects.equals(name, customer.name) && Objects.equals(id, customer.id);
     }
