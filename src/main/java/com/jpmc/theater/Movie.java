@@ -17,6 +17,13 @@ public class Movie {
     private double ticketPrice;
     private int specialCode;
 
+    /**
+     * @param title       title of the movie
+     * @param runningTime running time of movie
+     * @param ticketPrice ticket price of movie exlcuding disocunt
+     * @param specialCode special code for movie discount
+     * @return instance of a movie object with
+     */
     public Movie(String title, Duration runningTime, double ticketPrice, int specialCode) {
         this.title = title;
         this.runningTime = runningTime;

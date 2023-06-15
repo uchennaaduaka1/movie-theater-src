@@ -11,6 +11,10 @@ public class Theater {
     LocalDateProvider provider;
     private List<Showing> schedule;
 
+    /**
+     * @param provider provides the current date of movie schdule
+     * @return returns a reservation object of customer reservation
+     */
     public Theater(LocalDateProvider provider) {
         this.provider = provider;
 
@@ -57,6 +61,7 @@ public class Theater {
         System.out.println("===================================================");
     }
 
+    // Make method private only internal class should be able to see it
     private String humanReadableFormat(Duration duration) {
         long hour = duration.toHours();
         long remainingMin = duration.toMinutes() - TimeUnit.HOURS.toMinutes(duration.toHours());

@@ -4,12 +4,19 @@ import java.time.LocalDateTime;
 
 public class Showing {
     private Movie movie;
-    private int sequenceOfTheDay;
+    private int showSequence;
     private LocalDateTime showStartTime;
 
-    public Showing(Movie movie, int sequenceOfTheDay, LocalDateTime showStartTime) {
+    /**
+     * 
+     * @param movie         movie part of the showing
+     * @param showSequence  sequence of the movie
+     * @param showStartTime start time of the show
+     * @return showing object representing the movie that is being shown
+     */
+    public Showing(Movie movie, int showSequence, LocalDateTime showStartTime) {
         this.movie = movie;
-        this.sequenceOfTheDay = sequenceOfTheDay;
+        this.showSequence = showSequence;
         this.showStartTime = showStartTime;
     }
 
@@ -30,6 +37,6 @@ public class Showing {
     }
 
     public int getSequenceOfTheDay() {
-        return sequenceOfTheDay;
+        return showSequence;
     }
 }
