@@ -27,14 +27,6 @@ public class Customer {
         return name;
     }
 
-    public void setCustomerId(String id) {
-        this.id = id;
-    }
-
-    public void setCustomerName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)

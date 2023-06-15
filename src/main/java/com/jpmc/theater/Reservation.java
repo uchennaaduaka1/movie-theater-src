@@ -18,4 +18,8 @@ public class Reservation {
     public Customer getCustomer() {
         return customer;
     }
+
+    public Showing getShowingInfo() {
+        return showing;
+    }
 }

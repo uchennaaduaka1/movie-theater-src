@@ -32,11 +32,7 @@ public class Movie {
         return runningTime;
     }
 
-    public double getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public double calculateTicketPrice(Showing showing) {
+    public double getTicketPrice(Showing showing) {
         return ticketPrice - getDiscount(showing.getSequenceOfTheDay()) - getAdditionalDiscount(showing.getStartTime());
     }
 

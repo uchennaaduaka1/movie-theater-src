@@ -14,7 +14,7 @@ public class MovieTests {
     void testMovieWithRegularAndAdditionalDiscount() {
         Movie spiderMan = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1);
         Showing showing = new Showing(spiderMan, 1, LocalDateTime.of(LocalDate.now(), LocalTime.of(12, 30)));
-        assertEquals(6.375, spiderMan.calculateTicketPrice(showing));
+        assertEquals(6.375, spiderMan.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(90));
     }
@@ -23,7 +23,7 @@ public class MovieTests {
     void testMovieWithNoDiscounts() {
         Movie theBatMan = new Movie("The Batman", Duration.ofMinutes(95), 9, 0);
         Showing showing = new Showing(theBatMan, 5, LocalDateTime.of(LocalDate.now(), LocalTime.of(9, 30)));
-        assertEquals(9, theBatMan.calculateTicketPrice(showing));
+        assertEquals(9, theBatMan.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(90));
     }
@@ -33,7 +33,7 @@ public class MovieTests {
         Movie avengersEndgame = new Movie("Avengers: Endgamme", Duration.ofMinutes(270), 15, 0);
         Showing showing = new Showing(avengersEndgame, 4,
                 LocalDateTime.of(LocalDate.of(2022, 6, 7), LocalTime.of(8, 15)));
-        assertEquals(14, avengersEndgame.calculateTicketPrice(showing));
+        assertEquals(14, avengersEndgame.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(270));
     }
@@ -43,7 +43,7 @@ public class MovieTests {
         Movie transformersThree = new Movie("Transformers: Dark of the Moon", Duration.ofMinutes(120), 10, 1);
         Showing showing = new Showing(transformersThree, 7,
                 LocalDateTime.of(LocalDate.of(2022, 5, 7), LocalTime.now()));
-        assertEquals(5.5, transformersThree.calculateTicketPrice(showing));
+        assertEquals(5.5, transformersThree.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(120));
     }
@@ -52,7 +52,7 @@ public class MovieTests {
     void testMovieWithSpecialCodeDiscountAndStartTimeDiscount() {
         Movie littleMermaid = new Movie("The Little Mermaid", Duration.ofMinutes(90), 8, 1);
         Showing showing = new Showing(littleMermaid, 3, LocalDateTime.of(LocalDate.now(), LocalTime.of(14, 40)));
-        assertEquals(4.4, littleMermaid.calculateTicketPrice(showing));
+        assertEquals(4.4, littleMermaid.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(90));
     }
@@ -62,7 +62,7 @@ public class MovieTests {
         // Expect the sequence discount to win and be applied
         Movie justiceLeague = new Movie("Justice League", Duration.ofMinutes(180), 15, 1);
         Showing showing = new Showing(justiceLeague, 1, LocalDateTime.now());
-        assertEquals(8.25, justiceLeague.calculateTicketPrice(showing));
+        assertEquals(8.25, justiceLeague.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(180));
     }
@@ -73,7 +73,7 @@ public class MovieTests {
         Movie avatarTwo = new Movie("Avatar: The Way of Wateer", Duration.ofMinutes(290), 12.5, 0);
         Showing showing = new Showing(avatarTwo, 0,
                 LocalDateTime.of((LocalDate.of(2022, 07, 07)), LocalTime.of(13, 30)));
-        assertEquals(9.375, avatarTwo.calculateTicketPrice(showing));
+        assertEquals(9.375, avatarTwo.getTicketPrice(showing));
 
         System.out.println(Duration.ofMinutes(290));
 

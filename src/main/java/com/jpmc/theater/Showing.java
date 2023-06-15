@@ -22,11 +22,11 @@ public class Showing {
     }
 
     public boolean isSequence(int sequence) {
-        return this.sequenceOfTheDay == sequence;
+        return getSequenceOfTheDay() == sequence;
     }
 
     public double getMovieFee() {
-        return movie.calculateTicketPrice(this);
+        return movie.getTicketPrice(this);
     }
 
     public int getSequenceOfTheDay() {
